@@ -15,11 +15,11 @@ require 'logic.php';
 
 <h1>Foobooks0</h1>
 
-<?php foreach($books as $title => $book): ?>
+<?php foreach ($books as $title => $book): ?>
 
     <div class='book'>
-        <?=$title ?> by <?=$book['author']?>
-        <img src='<?=$book['cover_url']?>' alt='Cover photo for the book <?=$title?>'
+        <?= $title ?> by <?= $book['author'] ?>
+        <img src='<?= $book['cover_url'] ?>' alt='Cover photo for the book <?= $title ?>'
     </div>
 
 <?php endforeach ?>
