@@ -1,8 +1,11 @@
 <?php
 
-$booksJson = file_get_contents('books.json');
+require('Book.php');
 
-$books = json_decode($booksJson, true);
+use Foobooks0\Book;
+
+$book = new Book('books.json');
+
 $haveResults = false;
 
 $searchTerm = $_POST['searchTerm'] ?? '';
@@ -11,17 +14,7 @@ $caseSensitive = isset($_POST['caseSensitive']) ? true : false;
 
 if (isset($searchTerm)) {
 
-    foreach ($books as $title => $book) {
-        if($caseSensitive) {
-            $match = $title == $searchTerm;
-        } else{
-            $match = strtolower($title) == strtolower($searchTerm);
-        }
-
-        if(!$match) {
-            unset($books[$title]);
-        }
-    }
+    $books = $book->getByTitle($searchTerm, $caseSensitive);
 
     if (count($books) > 0) {
         $haveResults = true;
